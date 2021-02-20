@@ -2,7 +2,7 @@
 <html>
 <head>
 <script
-src=" https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"/>
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"/>
 </script>
 <script src="javascripts/sendOrder.js"></script>
 <link rel="stylesheet" href="stylesheets/newFontAndBackground.css">
@@ -45,7 +45,7 @@ src=" https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"/>
 
 <!-- radio button for selecting the toppings -->
 <!-- start of cherry and chocolate radio buttons, (had to give them all the same name so only 1 can be selected at one time) -->
-<input type="radio" id="Cherry-radio" value="Cherry" name="button1" style="margin-left:28px">
+<input type="radio" id="Cherry-radio" value="Cherry" name="button1" style="margin-left:33px">
 <label for="Cherry-radio" id="Cherry-Label">Cherry</label><br>
 <input type="radio" id="Chocolate-radio" value="Chocolate" name="button1" style="margin-left:80px">
 <label for="Chocolate-radio" id="Chocolate-Label">Chocolate</label><br>
@@ -80,7 +80,7 @@ value = "Enter any special instructions here."
 
 <!-- total orders section, assuming to use the numbers provided in the specifications -->
 <p style ="font-size:20px">Orders for 
-<select name="orderMonth" id="ordersByMonth" style="background-color: gray; margin-left: 10px;font-size:20px" >
+<select name="orderMonth" id="ordersByMonth" onmouseover='this.size=3' onBlur='this.size=1;' onChange='this.size=1; this.blur()' style="background-color: gray; margin-left: 10px;font-size:20px" >
 <option value="1">JAN</option>
 <option value="2">FEB</option>
 <option value="3">MAR</option>
