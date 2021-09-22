@@ -1,3 +1,5 @@
+//@jest-environment jsdom
+
 var fs = require('fs');
 
 test('test selectEvent', () => {

@@ -5,35 +5,33 @@
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"/>
 </script>
 <script src="javascripts/sendOrder.js"></script>
-<link rel="stylesheet" href="stylesheets/newFontAndBackground.css">
-
-
-<title>HW1 - JACK VOLONTE</title>
-
+<script src="javascripts/monthPostRequest.js"></script>
+<link rel="stylesheet" href="stylesheets/volonte22.css">
+<title>HW2 - JACK VOLONTE</title>
+<!-- AUTHOR: JACK VOLONTE -->
+<!-- DATE: 9/6/2021 -->
 </head>
 <body>
+<!-- css type section ^, changed the color and alignment of some text, also size -->
+<!-- <script src="javascripts/veganScript.js"></script> -->
+<!-- title --> 
+<h1>Cheesecake Order Form</h1>
 
-<!-- Jack Volonte -->
+<!-- image url injection -->
+<!-- changed size to fit better in the page --> 
+<p>
+<img src="https://www.thespruceeats.com/thmb/LdTjahTC2aOy3BXWL2Q-EaunO1A=/1333x1000/smart/filters:no_upscale()/gluten-free-new-york-cheesecake-1450985-hero-01-dc54f9daf38044238b495c7cefc191fa.jpg" alt="cheesecaketext" width=240px height=240px>
+</p>
 
-<!-- heading 1 (h1) contains the title of the page "Cheesecake Order Form" -->
-<h1 style="font-weight: bold;font-size:50px;">Cheesecake Order Form</h1>
-
-
-
-<!-- imbedded image, pulled from wikimedia, image is also refactored to be smaller to be similar to the design specifications of the homework -->
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg/800px-Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg" alt="alternatetext" width="250" height="250">
-
-
-<!-- Topping radio button section -->
-
-<!-- title for topping section -->
-<p> </p>
+<!-- Quantity Topping Section -->
+<p>
 <p id="quantity">Quantity Topping</p>
+</p>
 
 
 <!-- Plain radio button, added here before the dropdown button for spacing reasons -->
-<input type="radio" id="Plain-radio" value="Plain" name="button1" style="margin-left:80px">
-<label for="Plain-radio" id="Plain-Label">Plain</label><br>
+<input type="radio" id="plain" value="Plain" name="button1" style="margin-left:80px">
+<label for="plain" id="Plain-Label">Plain</label><br>
 
 <!-- number of toppings, dropdown menu -->
 <select name="toppings" id="toppings" style="background-color: gray; margin-left: 10px" >
@@ -45,15 +43,15 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"/>
 
 <!-- radio button for selecting the toppings -->
 <!-- start of cherry and chocolate radio buttons, (had to give them all the same name so only 1 can be selected at one time) -->
-<input type="radio" id="Cherry-radio" value="Cherry" name="button1" style="margin-left:33px">
-<label for="Cherry-radio" id="Cherry-Label">Cherry</label><br>
-<input type="radio" id="Chocolate-radio" value="Chocolate" name="button1" style="margin-left:80px">
-<label for="Chocolate-radio" id="Chocolate-Label">Chocolate</label><br>
-
+<input type="radio" id="cherry" value="Cherry" name="button1" style="margin-left:33px">
+<label for="cherry" id="Cherry-Label">Cherry</label><br>
+<input type="radio" id="chocolate" value="Chocolate" name="button1" style="margin-left:80px">
+<label for="chocolate" id="Chocolate-Label">Chocolate</label><br>
 
 
 <!-- Notes text box section -->
 <!-- I didnt know if the text should be grayed out like it is in the HW, the disabled tag would add that but I didn't add it to this because I wanted the user to be able to add text to the notes section -->
+<!-- instead I just added a gray tag to the color of the text contained in the text box on startup -->
 <p id = "NotesText" style="font-weight: bold;font-size:15px">Notes:<p>
 <p>     
 <input type = "text"
@@ -64,9 +62,12 @@ value = "Enter any special instructions here."
 <!-- disabled would go right above the /> ending of the text box sections to gray out the text -->
 </p>
 
-
+<p>
 <!-- order button --> 
 <button id="orderButton" onClick="sendOrder()">Order</button>
+</p>
+
+
 
 <!-- text to display once an order is placed --> 
 <p id="displayThis"></p>
@@ -74,40 +75,65 @@ value = "Enter any special instructions here."
 <p id="displayAmount"></p>
 <p id="displayNotes"></p>
 
-<!--orders section w/dropdown implemented -->
-<!-- moved to script file for hw3 -->
 
 
-<!-- total orders section, assuming to use the numbers provided in the specifications -->
+
+
+
+<!-- Total Orders Section -->
+<!-- added dropdown hoverable menu, only thing thats messed up is that it formats the apge different when it gets hovered
+(I need to fix this later but for now this is a working example of a hoverable) 
+
+credit goes to w3schools for their tutorial on select buttons (I had to look up the other options like onBlur, onmouseover, and onChange, 
+but those are common knowledge so I'm not going to credit those websites I used
+https://www.w3schools.com/tags/tag_select.asp
+-->
+
+
+
+<!-- header for select dropdown button -->
 <p style ="font-size:20px">Orders for 
-<select name="orderMonth" id="ordersByMonth" onmouseover='this.size=3' onBlur='this.size=1;' onChange='this.size=1; this.blur()' style="background-color: gray; margin-left: 10px;font-size:20px" >
-<option value="1">JAN</option>
-<option value="2">FEB</option>
-<option value="3">MAR</option>
-<option value="4">APR</option>
-<option value="5">MAY</option>
-<option value="6">JUN</option>
-<option value="7">JUL</option>
-<option value="8">AUG</option>
-<option value="9">SEP</option>
-<option value="10">OCT</option>
-<option value="11">NOV</option>
-<option value="12">DEC</option>
+
+<!-- select button declaration -->
+<select name="orderMonth" id="orderMonth" onChange="monthPostRequest()" onmouseover='this.size=3' onBlur='this.size=1;' onChange='this.size=1; this.blur()' style="background-color: gray; margin-left: 10px;font-size:20px" >
+
+<!-- group name -->
+<optgroup label="Month">
+
+	<!-- months as selectable options (3 displayed at a time ) -->
+	<option value="1">JAN</option>
+	<option value="2">FEB</option>
+	<option value="3">MAR</option>
+	<option value="4">APR</option>
+	<option value="5">MAY</option>
+	<option value="6">JUN</option>
+	<option value="7">JUL</option>
+	<option value="8">AUG</option>
+	<option value="9">SEP</option>
+	<option value="10">OCT</option>
+	<option value="11">NOV</option>
+	<option value="12">DEC</option>
+	</p>
+</p>
+</optgroup>
 </select>
-</p>
-</p>
-<p style="font-size:18px; padding-left:40px; margin:0">	• 11 cherry</p>
-<p style="font-size:18px; padding-left:40px; margin:0">	• 17 chocolate</p>
-<p style="font-size:18px; padding-left:40px; margin:0">	• 31 plain</p>
 
 
 
+<!-- Cherry/Chocolate/Plain count section -->
+<p5>
+<div id="yes" style = "position:relative; left:40px;" > 
+    <font size="5px">• 11 Cherry</font>
+</div>
+<div id="yess" style = "position:relative; left:40px;" > 
+    <font size="5px">• 17 Chocolate</font> 
+</div>
+<div id="yesss" style = "position:relative; left:40px;" > 
+    <font size="5px">• 31 Plain.</font> 
+</div>
+<p5/>
 
-<!-- javascript function to 1:check if notes says vegan, 2:remove the form section of the page and replace the page with text that says "Thank you! Your order has been placed." -->
-<!-- moved to script file for hw3 -->
 
-<!-- sendOrder() removes each of the order elements and displays text with details of the user's order -->
-<!-- moved to script file for hw3 -->
 
 
 </body>

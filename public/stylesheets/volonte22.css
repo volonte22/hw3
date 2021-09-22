@@ -1,0 +1,33 @@
+/* 
+	AUTHOR: Jack Volonte
+	DATE: 9/6/2021
+	css HW 2 turnin
+
+
+- changed the background to blue
+- changed the font of the title (h1 tag) to Arial
+- changed the color of text in the p section to red
+*/
+
+body {
+  background-color: blue;
+}
+
+
+h1 {
+  color: orange;
+  text-align: left;
+  font-family: Arial;
+  font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+  color: red;
+}
+
+P4 {
+  font-size: 30px;
+  
+}
+
